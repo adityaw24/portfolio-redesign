@@ -32,6 +32,7 @@ import {
   Paper,
 } from "@mui/material";
 import { LottieAnimation } from "../../utils/lottie-animation";
+import "../../styles/techStack.scss";
 
 const TechStack = () => {
   const datas = [
@@ -46,7 +47,7 @@ const TechStack = () => {
         width: 200,
       },
       api: ["Axios"],
-      tools: [],
+      tools: ["VS Code"],
     },
     {
       title: "Backend",
@@ -55,142 +56,148 @@ const TechStack = () => {
       bg: "white",
       icon: {
         data: BackendAnimation,
+        //     data: ToolsAnimation,
         height: 200,
         width: 200,
       },
       api: ["Rest API", "CRUD"],
-      tools: [],
+      tools: ["VS Code", "DBeaver", "Insomnia"],
     },
-    {
-      title: "Tools",
-      language: ["git"],
-      framework: [],
-      bg: "white",
-      icon: {
-        data: ToolsAnimation,
-        height: 200,
-        width: 200,
-      },
-      api: ["Postman", "Insomnia"],
-      tools: ["VS Code", "DBeaver"],
-    },
+    // {
+    //   title: "Tools",
+    //   language: ["git"],
+    //   framework: [],
+    //   bg: "white",
+    //   icon: {
+    //     data: ToolsAnimation,
+    //     height: 200,
+    //     width: 200,
+    //   },
+    //   api: ["Postman", "Insomnia"],
+    //   tools: ["VS Code", "DBeaver"],
+    // },
   ];
   return (
-    <Box className="bg-white p-6 md:p-12 xl:p-20 flex flex-col md:flex-row gap-6 justify-center">
-      {datas.map((data) => (
-        <Card key={data.title} elevation={3}>
-          <CardActionArea>
-            <CardContent>
-              <Typography variant="h6" gutterBottom className="text-center">
-                {data.title}
-              </Typography>
-              <Box className="flex flex-col justify-between items-center">
-                <div className="lg:h-[20rem] md:h-[13rem] xl:h-[28rem]">
-                  <LottieAnimation
-                    lottie={data.icon.data}
-                    height={data.icon.height}
-                    width={data.icon.width}
-                    // className='flex-1'
-                  />
-                </div>
-                {/* <Typography variant="body1" gutterBottom className="text-center">
+    <div className="min-h-screen container-tech-stack">
+      <Toolbar sx={{ display: { lg: "none" } }} />
+      <Box className="p-6 md:p-12 xl:p-40 lg:px-16 flex flex-col md:flex-row gap-6 xl:gap-[6rem] lg:gap-[3rem] justify-center h-full">
+        {/* <Box className="p-6 md:p-12 xl:p-40 lg:px-16 flex flex-col md:flex-row gap-6 xl:gap-[6rem] lg:gap-[3rem]"> */}
+        {datas.map((data) => (
+          <Card
+            key={data.title}
+            elevation={3}
+            className="card-tech-stack h-full"
+            sx={{
+              width: { lg: "30rem", md: "23rem" },
+              minHeight: { md: "37rem", sm: "35rem" },
+              overflow: "visible",
+              // height: { xs: "70rem !important" },
+              // backgroundColor: "rgba(255,255,255, 0.9)",
+            }}
+          >
+            <CardActionArea
+              className="h-full"
+              sx={{ display: "flex", alignItems: "flex-start" }}
+            >
+              <CardContent className="h-full">
+                <Typography variant="h6" gutterBottom className="text-center">
                   {data.title}
-                </Typography> */}
-                {/* <TableContainer component={Paper}>
-                  <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableBody>
-                      <TableRow
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
+                </Typography>
+                <Box
+                  className="flex flex-col justify-between items-center"
+                  // sx={{
+                  //   height: { xs: "90rem" },
+                  // }}
+                >
+                  <div className="lg:h-[21rem] md:h-[19rem] xl:h-[28rem]">
+                    <LottieAnimation
+                      lottie={data.icon.data}
+                      height={data.icon.height}
+                      width={data.icon.width}
+                      // className='flex-1'
+                    />
+                  </div>
+                  <Box>
+                    {data.language.length > 0 && (
+                      <Grid
+                        container
+                        columnSpacing={{ xs: 2, md: 3 }}
+                        columns={{ xs: 10, sm: 12, md: 14, lg: 16 }}
+                        sx={{ marginBottom: { xs: "0.5rem" } }}
                       >
-                        <TableCell component="th" scope="row">
+                        <Grid item lg={3} xs={4} sm={4} md={4}>
                           Language
-                        </TableCell>
-                        <TableCell align="right">:</TableCell>
-                        <TableCell align="right">{data.language}</TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
-                </TableContainer> */}
-                {data.language.length > 0 && (
-                  <Grid
-                    container
-                    spacing={{ xs: 2, md: 3 }}
-                    columns={{ xs: 8, sm: 12, md: 12, lg: 12 }}
-                    sx={{ marginBottom: { xs: "0.5rem" } }}
-                  >
-                    <Grid item lg={3} xs={3} sm={5}>
-                      Language
-                    </Grid>
-                    <Grid item lg="auto">
-                      :
-                    </Grid>
-                    <Grid item lg="auto">
-                      {data.language.join(", ")}
-                    </Grid>
-                  </Grid>
-                )}
-                {data.framework.length > 0 && (
-                  <Grid
-                    container
-                    spacing={{ xs: 2, md: 3 }}
-                    columns={{ xs: 8, sm: 12, md: 12, lg: 12 }}
-                    sx={{ marginBottom: { xs: "0.5rem" } }}
-                  >
-                    <Grid item lg={3} xs={3} sm={5}>
-                      Framework
-                    </Grid>
-                    <Grid item lg="auto">
-                      :
-                    </Grid>
-                    <Grid item lg="auto">
-                      {data.framework.join(", ")}
-                    </Grid>
-                  </Grid>
-                )}
-                {data.tools.length > 0 && (
-                  <Grid
-                    container
-                    spacing={{ xs: 2, md: 3 }}
-                    columns={{ xs: 8, sm: 12, md: 12, lg: 12 }}
-                    sx={{ marginBottom: { xs: "0.5rem" } }}
-                  >
-                    <Grid item lg={3} xs={3} sm={5}>
-                      Tools
-                    </Grid>
-                    <Grid item lg="auto">
-                      :
-                    </Grid>
-                    <Grid item lg="auto">
-                      {data.tools.join(", ")}
-                    </Grid>
-                  </Grid>
-                )}
-                {data.api.length > 0 && (
-                  <Grid
-                    container
-                    spacing={{ xs: 2, md: 3 }}
-                    columns={{ xs: 8, sm: 12, md: 12, lg: 12 }}
-                    sx={{ marginBottom: { xs: "0.5rem" } }}
-                  >
-                    <Grid item lg={3} xs={3} sm={5}>
-                      API
-                    </Grid>
-                    <Grid item lg="auto">
-                      :
-                    </Grid>
-                    <Grid item lg="auto">
-                      {data.api.join(", ")}
-                    </Grid>
-                  </Grid>
-                )}
-              </Box>
-            </CardContent>
-          </CardActionArea>
-        </Card>
-      ))}
-    </Box>
+                        </Grid>
+                        <Grid item lg="auto">
+                          :
+                        </Grid>
+                        <Grid item lg="auto">
+                          {data.language.join(", ")}
+                        </Grid>
+                      </Grid>
+                    )}
+                    {data.framework.length > 0 && (
+                      <Grid
+                        container
+                        columnSpacing={{ xs: 2, md: 3 }}
+                        columns={{ xs: 10, sm: 12, md: 14, lg: 16 }}
+                        sx={{ marginBottom: { xs: "0.5rem" } }}
+                      >
+                        <Grid item lg={3} xs={4} sm={4} md={4}>
+                          Framework
+                        </Grid>
+                        <Grid item lg="auto">
+                          :
+                        </Grid>
+                        <Grid item lg="auto">
+                          {data.framework.join(", ")}
+                        </Grid>
+                      </Grid>
+                    )}
+                    {data.tools.length > 0 && (
+                      <Grid
+                        container
+                        columnSpacing={{ xs: 2, md: 3 }}
+                        columns={{ xs: 10, sm: 12, md: 14, lg: 16 }}
+                        sx={{ marginBottom: { xs: "0.5rem" } }}
+                      >
+                        <Grid item lg={3} xs={4} sm={4} md={4}>
+                          Tools
+                        </Grid>
+                        <Grid item lg="auto">
+                          :
+                        </Grid>
+                        <Grid item lg="auto">
+                          {data.tools.join(", ")}
+                        </Grid>
+                      </Grid>
+                    )}
+                    {data.api.length > 0 && (
+                      <Grid
+                        container
+                        columnSpacing={{ xs: 2, md: 3 }}
+                        columns={{ xs: 10, sm: 12, md: 14, lg: 16 }}
+                        sx={{ marginBottom: { xs: "0.5rem" } }}
+                      >
+                        <Grid item lg={3} xs={4} sm={4} md={4}>
+                          API
+                        </Grid>
+                        <Grid item lg="auto">
+                          :
+                        </Grid>
+                        <Grid item lg="auto">
+                          {data.api.join(", ")}
+                        </Grid>
+                      </Grid>
+                    )}
+                  </Box>
+                </Box>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        ))}
+      </Box>
+    </div>
   );
 };
 

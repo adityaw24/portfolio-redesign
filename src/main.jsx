@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Provider } from "react-redux";
+import { store } from "./utils/redux/store/index.js";
 
 const darkTheme = createTheme({
   palette: {
@@ -15,8 +17,10 @@ const darkTheme = createTheme({
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {/* <ThemeProvider theme={darkTheme}> */}
-    <App />
-    {/* </ThemeProvider> */}
+    <Provider store={store}>
+      {/* <ThemeProvider theme={darkTheme}> */}
+      <App />
+      {/* </ThemeProvider> */}
+    </Provider>
   </React.StrictMode>
 );

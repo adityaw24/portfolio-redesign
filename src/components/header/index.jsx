@@ -19,38 +19,45 @@ import {
   List,
   Link,
 } from "@mui/material";
+import { useRegularHook } from "../../utils/hooks";
+import {
+  goHone,
+  goProjects,
+  goTechStack,
+} from "../../utils/redux/slice/navigationSlice";
 
 const Header = () => {
-  const navItems = ["Home", "Tech Stack", "Projects"];
   const drawerWidth = 240;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const { dispatch } = useRegularHook();
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
+  const handleGoHome = () => dispatch(goHone());
+  const handleGoTechStack = () => dispatch(goTechStack());
+  const handleGoProject = () => dispatch(goProjects());
+
+  const navItems = [
+    {
+      title: "Home",
+      action: handleGoHome,
+    },
+    {
+      title: "Tech Stack",
+      action: handleGoTechStack,
+    },
+    {
+      title: "Project",
+      action: handleGoProject,
+    },
+  ];
+
   const Navigation = () => {
     return (
       <>
-        {/* <Grid
-            container
-            spacing={{ xs: 2, md: 3 }}
-            columns={{ xs: 4, sm: 8, md: 12 }}
-          >
-            <Grid item>
-              <Button variant="text">Portfolio</Button>
-            </Grid>
-            <Grid item>
-              <ButtonGroup variant="text" aria-label="text button group">
-                {navItems.map((nav, index) => (
-                  <Button key={nav}>{nav}</Button>
-                ))}
-              </ButtonGroup>
-            </Grid>
-            <Grid item>
-              <Button variant="contained">Download CV</Button>
-            </Grid>
-          </Grid> */}
         <Toolbar
           //   sx={{ display: { xs: "none", sm: "flex" } }}
           className="justify-between flex"
@@ -77,6 +84,7 @@ const Header = () => {
             // color="#000"
             className="flex-none"
             sx={{ display: { xs: "none", sm: "block" }, color: "black" }}
+            onClick={handleGoHome}
           >
             Portfolio
           </Button>
@@ -92,8 +100,12 @@ const Header = () => {
             // className="flex-auto"
           >
             {navItems.map((nav, index) => (
-              <Button key={nav} sx={{ color: "black" }}>
-                {nav}
+              <Button
+                key={nav.title}
+                sx={{ color: "black" }}
+                onClick={nav.action}
+              >
+                {nav.title}
               </Button>
             ))}
           </ButtonGroup>
@@ -133,11 +145,14 @@ const Header = () => {
         <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
           <List>
             {navItems.map((item, index) => (
-              <div key={item}>
+              <div key={item.title}>
                 {index !== 0 && <Divider />}
                 <ListItem disablePadding>
-                  <ListItemButton sx={{ textAlign: "center" }}>
-                    <ListItemText primary={item} />
+                  <ListItemButton
+                    sx={{ textAlign: "center" }}
+                    onClick={item.action}
+                  >
+                    <ListItemText primary={item.title} />
                   </ListItemButton>
                 </ListItem>
               </div>
@@ -176,10 +191,10 @@ const Header = () => {
           component="nav"
           elevation={0}
           //   enableColorOnDark
-          //   position="sticky-top"
+          position="fixed"
           //   color="transparent"
           //   className="bg-[#f6f5f3]"
-          sx={{ backgroundColor: "#f5f5f5" }}
+          sx={{ backgroundColor: "rgba(255,255,255, 1)" }}
         >
           {/* <Toolbar> */}
           <Navigation />
@@ -208,7 +223,7 @@ const Header = () => {
           </Drawer>
         </Box>
       </Box>
-      <Toolbar />
+      {/* <Toolbar /> */}
     </>
   );
 };

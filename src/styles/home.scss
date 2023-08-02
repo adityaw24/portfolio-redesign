@@ -1,4 +1,16 @@
-.card {
+.container-home {
+  background-color: #F0F5F9 !important;
+
+  .MuiTypography-root,
+  .MuiGrid-root {
+    color: #1E2022 !important;
+  }
+
+  // .MuiIconButton-root {
+  //   :hover {
+  //     background-color: #EEEEEE !important;
+  //   }
+  // }
 }
 
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {

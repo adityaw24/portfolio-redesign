@@ -2,7 +2,7 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { Header, Home } from "./components";
+import { Header, Home, TechStack } from "./components";
 import {
   Grid,
   ButtonGroup,
@@ -20,16 +20,27 @@ import {
   Divider,
   List,
 } from "@mui/material";
+import { useRegularHook } from "./utils/hooks";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const { reduxState } = useRegularHook();
+  const navigationSection = reduxState.navigation.nav;
+
+  const section = {
+    home: navigationSection?.home ?? true,
+    techStack: navigationSection?.techStack,
+    project: navigationSection?.projects,
+  };
+
+  console.log(navigationSection);
+  console.log(section);
 
   return (
-    <>
-      {/* <Header /> */}
-      {/* <Toolbar /> */}
-      <Home />
-    </>
+    <div>
+      <Header />
+      {section.home && <Home />}
+      {section.techStack && <TechStack />}
+    </div>
   );
 }
 
