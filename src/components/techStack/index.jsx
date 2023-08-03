@@ -79,11 +79,14 @@ const TechStack = () => {
                   className="h-full"
                   sx={{ display: "flex", alignItems: "flex-start" }}
                 >
-                  <CardContent className="h-full flex flex-col">
+                  <CardContent
+                    className="h-full flex flex-col"
+                    sx={{ padding: 0 }}
+                  >
                     <Typography
                       variant="h6"
                       gutterBottom
-                      className="text-center"
+                      className="text-center pt-4"
                     >
                       {data.title}
                     </Typography>
