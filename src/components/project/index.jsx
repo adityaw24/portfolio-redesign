@@ -87,7 +87,10 @@ const Project = () => {
                   className="h-full"
                   sx={{ display: "flex", alignItems: "flex-start" }}
                 >
-                  <CardContent className="h-full flex flex-col">
+                  <CardContent
+                    className="h-full flex flex-col"
+                    sx={{ padding: 0 }}
+                  >
                     {/* <Box
                     className="flex flex-col justify-between items-center"
                     // sx={{
