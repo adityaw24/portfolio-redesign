@@ -19,6 +19,7 @@ import {
   CardActionArea,
   CardMedia,
   CardContent,
+  Tooltip,
 } from "@mui/material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import PublicIcon from "@mui/icons-material/Public";
@@ -26,7 +27,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import Header from "../header";
 import "../../styles/home.scss";
 import TechStack from "../techStack";
-import { linkUrl } from "../../utils/const";
+import { ImageUrl, linkUrl } from "../../utils/const";
 
 const Home = () => {
   return (
@@ -102,23 +103,29 @@ const Home = () => {
                 <CardContent className="flex gap-1" sx={{ padding: 0 }}>
                   {/* <LinkedInIcon color="primary" />
                       <PublicIcon color="primary" /> */}
-                  <IconButton
-                    color="primary"
-                    href={linkUrl.linkedIn}
-                    target="_blank"
-                  >
-                    <LinkedInIcon color="primary" />
-                  </IconButton>
-                  <IconButton
-                    sx={{ color: "black" }}
-                    href={linkUrl.github}
-                    target="_blank"
-                  >
-                    <GitHubIcon />
-                  </IconButton>
-                  <IconButton href={linkUrl.web} target="_blank">
-                    <PublicIcon />
-                  </IconButton>
+                  <Tooltip title="LinkedIn">
+                    <IconButton
+                      color="primary"
+                      href={linkUrl.linkedIn}
+                      target="_blank"
+                    >
+                      <LinkedInIcon color="primary" />
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title="Github">
+                    <IconButton
+                      sx={{ color: "black" }}
+                      href={linkUrl.github}
+                      target="_blank"
+                    >
+                      <GitHubIcon />
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title="Open Web">
+                    <IconButton href={linkUrl.web} target="_blank">
+                      <PublicIcon />
+                    </IconButton>
+                  </Tooltip>
                 </CardContent>
               </Grid>
             </Grid>
@@ -145,7 +152,7 @@ const Home = () => {
           <CardMedia
             component="img"
             alt="profile"
-            image="/profile.png"
+            image={ImageUrl.profile}
             sx={{ borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%" }}
           />
           {/* </Card> */}

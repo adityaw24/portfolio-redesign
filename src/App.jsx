@@ -1,8 +1,8 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
-import "./App.css";
-import { Header, Home, TechStack } from "./components";
+import "./App.scss";
+import { Header, Home, Project, TechStack } from "./components";
 import {
   Grid,
   ButtonGroup,
@@ -40,6 +40,7 @@ function App() {
       <Header />
       {section.home && <Home />}
       {section.techStack && <TechStack />}
+      {section.project && <Project />}
     </div>
   );
 }

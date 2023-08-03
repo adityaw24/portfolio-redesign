@@ -30,16 +30,22 @@ import {
   TableRow,
   TableCell,
   Paper,
+  Tooltip,
 } from "@mui/material";
-import { LottieAnimation } from "../../utils/lottie-animation";
-import "../../styles/techStack.scss";
-import { dataTechStack } from "../../utils/const";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import PublicIcon from "@mui/icons-material/Public";
+import "../../styles/project.scss";
+import {
+  ImageUrl,
+  dataProject,
+  projectUrlDeploy,
+  projectUrlGithub,
+} from "../../utils/const";
 
-const TechStack = () => {
+const Project = () => {
   return (
-    <div className="min-h-screen container-tech-stack">
+    <div className="min-h-screen container-project">
       <Toolbar />
-      {/* <Box className="p-6 md:p-12 xl:p-40 lg:px-16 flex flex-col md:flex-row gap-6 xl:gap-[6rem] lg:gap-[3rem] justify-center h-full"> */}
       <Grid
         container
         // spacing={{ xs: 2, md: 3 }}
@@ -47,8 +53,9 @@ const TechStack = () => {
         className="py-2 md:py-6"
         // className="p-6 md:p-12 xl:p-40 lg:px-16 flex flex-col md:flex-row gap-6 xl:gap-[6rem] lg:gap-[3rem] justify-center h-full"
       >
+        {/* <Box className="p-6 md:p-12 xl:p-40 lg:px-16 flex flex-col md:flex-row gap-6 xl:gap-[6rem] lg:gap-[3rem] justify-center h-full"> */}
         {/* <Box className="p-6 md:p-12 xl:p-40 lg:px-16 flex flex-col md:flex-row gap-6 xl:gap-[6rem] lg:gap-[3rem]"> */}
-        {dataTechStack.map((data) => (
+        {dataProject.map((data) => (
           <>
             <Grid
               item
@@ -66,10 +73,11 @@ const TechStack = () => {
               <Card
                 key={data.title}
                 elevation={3}
-                className="card-tech-stack h-full"
+                className="h-full card-project"
                 sx={{
-                  width: { lg: "30rem", md: "23rem" },
-                  minHeight: { md: "43rem", sm: "35rem" },
+                  // width: "100%",
+                  width: { xl: "40rem", lg: "30rem", sm: "20rem", md: "25rem" },
+                  // minHeight: { md: "37rem", sm: "35rem" },
                   overflow: "visible",
                   // height: { xs: "70rem !important" },
                   // backgroundColor: "rgba(255,255,255, 0.9)",
@@ -80,29 +88,52 @@ const TechStack = () => {
                   sx={{ display: "flex", alignItems: "flex-start" }}
                 >
                   <CardContent className="h-full flex flex-col">
-                    <Typography
-                      variant="h6"
-                      gutterBottom
-                      className="text-center"
-                    >
-                      {data.title}
-                    </Typography>
-                    <Box
-                      className="flex flex-col justify-between"
-                      // sx={{
-                      //   height: { xs: "90rem" },
-                      // }}
-                    >
-                      <div className="lg:h-[21rem] md:h-[19rem] xl:h-[28rem]">
-                        <LottieAnimation
-                          lottie={data.icon.data}
-                          height={data.icon.height}
-                          width={data.icon.width}
-                          // className="min-h-[10rem]"
-                        />
-                      </div>
-                      <Table>
+                    {/* <Box
+                    className="flex flex-col justify-between items-center"
+                    // sx={{
+                    //   height: { xs: "90rem" },
+                    // }}
+                  > */}
+                    {/* <div className="lg:h-[21rem] md:h-[19rem] xl:h-[28rem]"> */}
+                    {/* <LottieAnimation
+                    lottie={data.icon.data}
+                    // height={data.icon.height}
+                    // width={data.icon.width}
+                    // className="flex"
+                  /> */}
+                    {/* </div> */}
+                    <CardMedia
+                      component="img"
+                      alt={data.title}
+                      image={data.image}
+                    />
+                    <Box sx={{ marginTop: { xs: "2rem" } }}>
+                      <Typography
+                        variant="h6"
+                        gutterBottom
+                        className="text-center"
+                      >
+                        {data.title}
+                      </Typography>
+                      <Table
+                        // sx={{ minWidth: 650 }}
+                        size="small"
+                      >
                         <TableBody>
+                          <TableRow
+                            sx={{
+                              "&:last-child td, &:last-child th": { border: 0 },
+                              verticalAlign: "top",
+                            }}
+                          >
+                            <TableCell component="th" scope="row">
+                              Features
+                            </TableCell>
+                            <TableCell align="left">:</TableCell>
+                            <TableCell align="left">
+                              {data.feature.join(", ")}
+                            </TableCell>
+                          </TableRow>
                           <TableRow
                             sx={{
                               "&:last-child td, &:last-child th": { border: 0 },
@@ -161,7 +192,46 @@ const TechStack = () => {
                           </TableRow>
                         </TableBody>
                       </Table>
-                      {/* <Box>
+                      <div className="flex flex-wrap gap-2 justify-center mt-4">
+                        {data.github.length > 0 && (
+                          <Tooltip title="Github">
+                            <IconButton
+                              sx={{ color: "black" }}
+                              href={data.github}
+                              target="_blank"
+                            >
+                              <GitHubIcon />
+                            </IconButton>
+                          </Tooltip>
+                        )}
+                        {data.web.length > 0 && (
+                          <Tooltip title="Open Web">
+                            <IconButton
+                              sx={{ color: "black" }}
+                              href={data.web}
+                              target="_blank"
+                            >
+                              <PublicIcon />
+                            </IconButton>
+                          </Tooltip>
+                        )}
+                      </div>
+                      {/* {data.feature.length > 0 && (
+                      <Grid
+                        container
+                        columnSpacing={{ xs: 2, md: 3 }}
+                        columns={{ xs: 10, sm: 12, md: 14, lg: 16 }}
+                        sx={{ marginBottom: { xs: "0.5rem" } }}
+                      >
+                        <Grid item lg={3} xs={4} sm={4} md={4}>
+                          Features
+                        </Grid>
+                        <Grid item>:</Grid>
+                        <Grid item>
+                          {data.feature.join(", ")}
+                        </Grid>
+                      </Grid>
+                    )}
                     {data.language.length > 0 && (
                       <Grid
                         container
@@ -233,19 +303,19 @@ const TechStack = () => {
                           {data.api.join(", ")}
                         </Grid>
                       </Grid>
-                    )}
-                  </Box> */}
+                    )} */}
                     </Box>
+                    {/* </Box> */}
                   </CardContent>
                 </CardActionArea>
               </Card>
             </Grid>
           </>
         ))}
+        {/* </Box> */}
       </Grid>
-      {/* </Box> */}
     </div>
   );
 };
 
-export default TechStack;
+export default Project;

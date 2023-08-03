@@ -1,6 +1,6 @@
 import Lottie from "lottie-react";
 
-export const LottieAnimation = ({ lottie, width, height }) => {
+export const LottieAnimation = ({ lottie, width, height }, props) => {
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -11,9 +11,15 @@ export const LottieAnimation = ({ lottie, width, height }) => {
   };
 
   return (
-    <>
+    <div className="flex">
       {/* <Lottie options={defaultOptions} height={height} width={width} /> */}
-      <Lottie height={height} width={width} loop animationData={lottie} />
-    </>
+      <Lottie
+        height={height}
+        width={width}
+        loop
+        animationData={lottie}
+        {...props}
+      />
+    </div>
   );
 };
