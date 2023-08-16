@@ -25,6 +25,7 @@ export const projectUrlGithub = {
 
 export const projectUrlDeploy = {
   movieApp: "https://official-movie-app.vercel.app/home",
+  weatherApp: "https://weatherforecast-project.vercel.app",
 };
 
 export const dataTechStack = [
@@ -107,7 +108,7 @@ export const dataProject = [
     tools: ["VS Code", "Insomnia"],
     image: ImageUrl.weatherApp,
     github: projectUrlGithub.weatherApp,
-    web: "",
+    web: projectUrlDeploy.weatherApp,
   },
   {
     title: "Movie Apps",
