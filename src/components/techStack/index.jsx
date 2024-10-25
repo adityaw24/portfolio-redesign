@@ -66,7 +66,7 @@ const TechStack = () => {
               <Card
                 key={data.title}
                 elevation={3}
-                className="card-tech-stack h-full"
+                className="h-full card-tech-stack"
                 sx={{
                   width: { lg: "30rem", md: "23rem" },
                   minHeight: { md: "43rem", sm: "35rem" },
@@ -80,13 +80,13 @@ const TechStack = () => {
                   sx={{ display: "flex", alignItems: "flex-start" }}
                 >
                   <CardContent
-                    className="h-full flex flex-col"
+                    className="flex flex-col h-full"
                     sx={{ padding: 0 }}
                   >
                     <Typography
                       variant="h6"
                       gutterBottom
-                      className="text-center pt-4"
+                      className="pt-4 text-center"
                     >
                       {data.title}
                     </Typography>

@@ -11,7 +11,7 @@ export const LottieAnimation = ({ lottie, width, height }, props) => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex h-full">
       {/* <Lottie options={defaultOptions} height={height} width={width} /> */}
       <Lottie
         height={height}
