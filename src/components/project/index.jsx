@@ -31,12 +31,13 @@ import {
   TableCell,
   Paper,
   Tooltip,
+  ImageList,
+  ImageListItem,
 } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import PublicIcon from "@mui/icons-material/Public";
 import "../../styles/project.scss";
 import {
-  ImageUrl,
   dataProject,
   projectUrlDeploy,
   projectUrlGithub,
@@ -49,7 +50,7 @@ const Project = () => {
       <Grid
         container
         // spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 1, sm: 4, md: 8, lg: 8 }}
+        columns={{ xs: 1, sm: 4, md: 8, lg: 12 }}
         className="py-2 md:py-6"
         // className="p-6 md:p-12 xl:p-40 lg:px-16 flex flex-col md:flex-row gap-6 xl:gap-[6rem] lg:gap-[3rem] justify-center h-full"
       >
@@ -71,7 +72,7 @@ const Project = () => {
               }
             >
               <Card
-                key={data.title}
+                key={data?.title}
                 elevation={3}
                 className="h-full card-project"
                 sx={{
@@ -88,35 +89,64 @@ const Project = () => {
                   sx={{ display: "flex", alignItems: "flex-start" }}
                 >
                   <CardContent
-                    className="h-full flex flex-col"
+                    className="flex flex-col h-full"
                     sx={{ padding: 0 }}
                   >
                     {/* <Box
-                    className="flex flex-col justify-between items-center"
+                    className="flex flex-col items-center justify-between"
                     // sx={{
                     //   height: { xs: "90rem" },
                     // }}
                   > */}
                     {/* <div className="lg:h-[21rem] md:h-[19rem] xl:h-[28rem]"> */}
                     {/* <LottieAnimation
-                    lottie={data.icon.data}
-                    // height={data.icon.height}
-                    // width={data.icon.width}
+                    lottie={data?.icon.data}
+                    // height={data?.icon.height}
+                    // width={data?.icon.width}
                     // className="flex"
                   /> */}
                     {/* </div> */}
-                    <CardMedia
-                      component="img"
-                      alt={data.title}
-                      image={data.image}
-                    />
+                    {data?.image?.length == 2 ? (
+                      <ImageList variant="masonry" cols={2} gap={8}>
+                        {data?.image?.map((item) => (
+                          <ImageListItem key={item}>
+                            <img
+                              srcSet={`${item}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                              src={`${item}?w=248&fit=crop&auto=format`}
+                              alt={data?.title}
+                              loading="lazy"
+                            />
+                          </ImageListItem>
+                        ))}
+                      </ImageList>
+                    ) : data?.image?.length > 2 ? (
+                      <ImageList variant="masonry" cols={3} gap={8}>
+                        {data?.image?.map((item) => (
+                          <ImageListItem key={item}>
+                            <img
+                              srcSet={`${item}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                              src={`${item}?w=248&fit=crop&auto=format`}
+                              alt={data?.title}
+                              loading="lazy"
+                            />
+                          </ImageListItem>
+                        ))}
+                      </ImageList>
+                    ) : (
+                      <CardMedia
+                        component="img"
+                        alt={data?.title}
+                        image={data?.image?.[0]}
+                        className="h-[80%]"
+                      />
+                    )}
                     <Box sx={{ marginTop: { xs: "2rem" } }}>
                       <Typography
                         variant="h6"
                         gutterBottom
                         className="text-center"
                       >
-                        {data.title}
+                        {data?.title}
                       </Typography>
                       <Table
                         // sx={{ minWidth: 650 }}
@@ -134,7 +164,7 @@ const Project = () => {
                             </TableCell>
                             <TableCell align="left">:</TableCell>
                             <TableCell align="left">
-                              {data.feature.join(", ")}
+                              {data?.feature.join(", ")}
                             </TableCell>
                           </TableRow>
                           <TableRow
@@ -148,7 +178,7 @@ const Project = () => {
                             </TableCell>
                             <TableCell align="left">:</TableCell>
                             <TableCell align="left">
-                              {data.language.join(", ")}
+                              {data?.language.join(", ")}
                             </TableCell>
                           </TableRow>
                           <TableRow
@@ -162,7 +192,7 @@ const Project = () => {
                             </TableCell>
                             <TableCell align="left">:</TableCell>
                             <TableCell align="left">
-                              {data.framework.join(", ")}
+                              {data?.framework.join(", ")}
                             </TableCell>
                           </TableRow>
                           <TableRow
@@ -176,7 +206,7 @@ const Project = () => {
                             </TableCell>
                             <TableCell align="left">:</TableCell>
                             <TableCell align="left">
-                              {data.api.join(", ")}
+                              {data?.api.join(", ")}
                             </TableCell>
                           </TableRow>
                           <TableRow
@@ -190,28 +220,28 @@ const Project = () => {
                             </TableCell>
                             <TableCell align="left">:</TableCell>
                             <TableCell align="left">
-                              {data.tools.join(", ")}
+                              {data?.tools.join(", ")}
                             </TableCell>
                           </TableRow>
                         </TableBody>
                       </Table>
-                      <div className="flex flex-wrap gap-2 justify-center mt-4">
-                        {data.github.length > 0 && (
+                      <div className="flex flex-wrap justify-center gap-2 mt-4">
+                        {data?.github?.length > 0 && (
                           <Tooltip title="Github">
                             <IconButton
                               sx={{ color: "black" }}
-                              href={data.github}
+                              href={data?.github}
                               target="_blank"
                             >
                               <GitHubIcon />
                             </IconButton>
                           </Tooltip>
                         )}
-                        {data.web.length > 0 && (
+                        {data?.web?.length > 0 && (
                           <Tooltip title="Open Web">
                             <IconButton
                               sx={{ color: "black" }}
-                              href={data.web}
+                              href={data?.web}
                               target="_blank"
                             >
                               <PublicIcon />
@@ -219,7 +249,7 @@ const Project = () => {
                           </Tooltip>
                         )}
                       </div>
-                      {/* {data.feature.length > 0 && (
+                      {/* {data?.feature.length > 0 && (
                       <Grid
                         container
                         columnSpacing={{ xs: 2, md: 3 }}
@@ -231,11 +261,11 @@ const Project = () => {
                         </Grid>
                         <Grid item>:</Grid>
                         <Grid item>
-                          {data.feature.join(", ")}
+                          {data?.feature.join(", ")}
                         </Grid>
                       </Grid>
                     )}
-                    {data.language.length > 0 && (
+                    {data?.language.length > 0 && (
                       <Grid
                         container
                         columnSpacing={{ xs: 2, md: 3 }}
@@ -249,11 +279,11 @@ const Project = () => {
                           :
                         </Grid>
                         <Grid item lg="auto">
-                          {data.language.join(", ")}
+                          {data?.language.join(", ")}
                         </Grid>
                       </Grid>
                     )}
-                    {data.framework.length > 0 && (
+                    {data?.framework.length > 0 && (
                       <Grid
                         container
                         columnSpacing={{ xs: 2, md: 3 }}
@@ -267,11 +297,11 @@ const Project = () => {
                           :
                         </Grid>
                         <Grid item lg="auto">
-                          {data.framework.join(", ")}
+                          {data?.framework.join(", ")}
                         </Grid>
                       </Grid>
                     )}
-                    {data.tools.length > 0 && (
+                    {data?.tools.length > 0 && (
                       <Grid
                         container
                         columnSpacing={{ xs: 2, md: 3 }}
@@ -285,11 +315,11 @@ const Project = () => {
                           :
                         </Grid>
                         <Grid item lg="auto">
-                          {data.tools.join(", ")}
+                          {data?.tools.join(", ")}
                         </Grid>
                       </Grid>
                     )}
-                    {data.api.length > 0 && (
+                    {data?.api.length > 0 && (
                       <Grid
                         container
                         columnSpacing={{ xs: 2, md: 3 }}
@@ -303,7 +333,7 @@ const Project = () => {
                           :
                         </Grid>
                         <Grid item lg="auto">
-                          {data.api.join(", ")}
+                          {data?.api.join(", ")}
                         </Grid>
                       </Grid>
                     )} */}

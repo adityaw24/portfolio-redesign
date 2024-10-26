@@ -32,9 +32,6 @@ function App() {
     project: navigationSection?.projects,
   };
 
-  console.log(navigationSection);
-  console.log(section);
-
   return (
     <div>
       <Header />

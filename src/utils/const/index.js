@@ -10,11 +10,26 @@ export const linkUrl = {
   linkedIn: "https://www.linkedin.com/in/purwa-aditya-wisnu-wardhana/",
 };
 
-export const ImageUrl = {
-  movieApp: "/movie-apps.jpg",
-  eCommerceApp: "/ecommerce-apps.jpg",
-  weatherApp: "/weather-apps.jpg",
+/**@type {ImageUrlProject} imageUrlProject */
+export const imageUrlProject = {
+  movieApp: ["/movie-apps.jpg"],
+  eCommerceApp: ["/ecommerce-apps.jpg"],
+  weatherApp: ["/weather-apps.jpg"],
+  tomsWeb: [
+    "/toms-mobile1.PNG",
+    "/toms-web1.png",
+    "/toms-web2.png",
+    "/toms-mobile2.PNG",
+    "/toms-mobile3.PNG",
+    "/toms-mobile4.PNG",
+    "/toms-mobile5.PNG",
+  ],
+  psmHrPortal: ["/psm-hr-portal1.png", "/psm-hr-portal2.png"],
+};
+
+export const imageUrl = {
   profile: "/profile.png",
+  project: imageUrlProject,
 };
 
 export const projectUrlGithub = {
@@ -26,6 +41,7 @@ export const projectUrlGithub = {
 export const projectUrlDeploy = {
   movieApp: "https://official-movie-app.vercel.app/home",
   weatherApp: "https://weatherforecast-project.vercel.app",
+  psmHrPortal: "https://siska.app.prosigmaka.com/",
 };
 
 export const dataTechStack = [
@@ -71,6 +87,7 @@ export const dataTechStack = [
   // },
 ];
 
+/**@type {DataProjectType[]} dataProject */
 export const dataProject = [
   {
     title: "E-Commerce Apps",
@@ -87,9 +104,8 @@ export const dataProject = [
     ],
     api: ["Axios", "json-server", "json-auth"],
     tools: ["VS Code", "Insomnia"],
-    image: ImageUrl.eCommerceApp,
+    image: imageUrlProject.eCommerceApp,
     github: projectUrlGithub.eCommerceApp,
-    web: "",
   },
   {
     title: "Live Weather Apps",
@@ -106,7 +122,7 @@ export const dataProject = [
     ],
     api: ["Axios", "Open Weather API"],
     tools: ["VS Code", "Insomnia"],
-    image: ImageUrl.weatherApp,
+    image: imageUrlProject.weatherApp,
     github: projectUrlGithub.weatherApp,
     web: projectUrlDeploy.weatherApp,
   },
@@ -123,8 +139,51 @@ export const dataProject = [
     ],
     api: ["Axios", "Moviedb API"],
     tools: ["VS Code", "Insomnia"],
-    image: ImageUrl.movieApp,
+    image: imageUrlProject.movieApp,
     github: projectUrlGithub.movieApp,
     web: projectUrlDeploy.movieApp,
+  },
+  {
+    title: "PSM HR Portal",
+    language: ["HTML", "CSS", "Javascript"],
+    framework: ["ReactJs", "Zustand", "Tailwind", "Daisy UI"],
+    bg: "white",
+    feature: [
+      "Login Page",
+      "Home Page",
+      "Talent Acquisition Modul",
+      "Master Data Modul",
+      "Sales Modul",
+      "Timesheet Employee Modul",
+      "Generate & Download CV",
+    ],
+    api: ["Axios"],
+    tools: ["VS Code", "Insomnia", "Swagger"],
+    image: imageUrlProject.psmHrPortal,
+    web: projectUrlDeploy.psmHrPortal,
+  },
+  {
+    title: "Transport Online Management System Toyota (Web & Mobile)",
+    language: ["HTML", "CSS", "Javascript", "Typescript"],
+    framework: ["ReactJs", "React Native", "Redux Toolkit", "Tailwind"],
+    bg: "white",
+    feature: [
+      "Login Page",
+      "Home Page",
+      "Master Reservation Car",
+      "Master Commuter",
+      "Master Emmision",
+      "Master Car",
+      "Master Administrator",
+      "Master Maintenance",
+      "Menu Reservation Car",
+      "Menu Commuter",
+      "Menu Maintenance",
+      "Tracking Car/Driver",
+      "Download Report",
+    ],
+    api: ["Axios"],
+    tools: ["VS Code", "Postman", "Swagger", "Google Maps"],
+    image: imageUrlProject.tomsWeb,
   },
 ];

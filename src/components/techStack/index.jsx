@@ -48,9 +48,10 @@ const TechStack = () => {
         // className="p-6 md:p-12 xl:p-40 lg:px-16 flex flex-col md:flex-row gap-6 xl:gap-[6rem] lg:gap-[3rem] justify-center h-full"
       >
         {/* <Box className="p-6 md:p-12 xl:p-40 lg:px-16 flex flex-col md:flex-row gap-6 xl:gap-[6rem] lg:gap-[3rem]"> */}
-        {dataTechStack.map((data) => (
+        {dataTechStack.map((data, dataIndex) => (
           <>
             <Grid
+              key={dataIndex}
               item
               xs={1}
               sm={2}

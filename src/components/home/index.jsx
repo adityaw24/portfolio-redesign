@@ -27,11 +27,11 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import Header from "../header";
 import "../../styles/home.scss";
 import TechStack from "../techStack";
-import { ImageUrl, linkUrl } from "../../utils/const";
+import { imageUrl, linkUrl } from "../../utils/const";
 
 const Home = () => {
   return (
-    <div className="container-home min-h-screen">
+    <div className="min-h-screen container-home">
       {/* <Header /> */}
       {/* <main> */}
       <Grid
@@ -142,7 +142,7 @@ const Home = () => {
           sx={{ display: { xs: "none", sm: "block" } }}
         >
           {/* <Card
-              className="bg-white rounded-xl px-4"
+              className="px-4 bg-white rounded-xl"
               sx={{
                 borderRadius: "0.8rem",
                 // backgroundImage: "url(/profile.png)",
@@ -152,7 +152,7 @@ const Home = () => {
           <CardMedia
             component="img"
             alt="profile"
-            image={ImageUrl.profile}
+            image={imageUrl.profile}
             sx={{ borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%" }}
           />
           {/* </Card> */}
