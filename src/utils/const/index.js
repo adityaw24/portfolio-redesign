@@ -42,6 +42,7 @@ export const projectUrlDeploy = {
   movieApp: "https://official-movie-app.vercel.app/home",
   weatherApp: "https://weatherforecast-project.vercel.app",
   psmHrPortal: "https://siska.app.prosigmaka.com/",
+  tomsWeb: "http://13.250.51.142/login",
 };
 
 export const dataTechStack = [
@@ -185,5 +186,6 @@ export const dataProject = [
     api: ["Axios"],
     tools: ["VS Code", "Postman", "Swagger", "Google Maps"],
     image: imageUrlProject.tomsWeb,
+    web: projectUrlDeploy.tomsWeb,
   },
 ];
